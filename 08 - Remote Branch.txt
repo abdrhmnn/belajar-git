@@ -1,0 +1,22 @@
+remote branch yaitu mengirim perubahan dari sebuah branch dari repo kita lalu branch tersebut diusulkan ke repo sumber nya atau aslinya
+
+sebaiknya default branch (master atau main) dari repo yg sudah kita fork itu JANGAN diubah biarkan sama dengan repo aslinya jadi kalau mau melakukan perubahan BIKIN branch baru dulu nanti yang diusulkan ke repo aslinya adalah branch yang baru kita buat jgn master
+
+Untuk mengirim perubahan yang kita lakukan didalam sebuah branch ke pemilik repo aslinya :
+* git branch <namaBranchBaru>  <- buat branch baru dan biasakan jika ingin mengirim perubahan ke pemilik repo maka harus buat branch baru terlebih dahulu supaya branch masternya selalu up-to-date dengan branch aslinya
+* git checkout <namaBranchBaru>
+* lakukan perubahan didalam branch baru
+* git commit -am "<pesan>"
+* git push origin <namaBranchBaru> <- melakukan push ke repo fork local kita yg ada di github
+* kemudian kita lakukan pull request didalam github (harus lakukan di remote karena fitur pull request ini adalah fitur milik remote nya), klik compare & pull request dan isi pesan perubahan yang nantinya akan dibaca oleh sih pemilik repo
+
+(setelah kita push maka tinggal menunggu perubahan kita di terima atau tidak oleh sih pemilik repo nya)
+
+* jika diterima maka kita akan membuat repo kita up-to-date dengan pemilik repo aslinya
+* git fetch <remoteRepoAslinya>, fetch dulu perubahan dari repo aslinya
+* graph
+* git checkout master <- pindah ke branch master terlebih dahulu jika ingin melakukan merge antara branch master di git local dengan branch master di pemilik repo
+* git merge sandhikagalih/master <- merge repo local dengan repo aslinya
+* git push origin master <- mengirim perubahan dari local ke github kita
+* git branch -d <namaBranch>  <- hapus branch yang sudah dibuat sebelumnya di local kita (kalo branch yg kita gunakan untuk pull request sudah tidak dibutuhkan maka bisa langsung dihapus)
+* git push origin --delete <namaBranch>  <- untuk menghapus branch pada remote (github) kita

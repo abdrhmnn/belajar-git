@@ -1,0 +1,22 @@
+branch adalah cabang yang dibuat untuk memperluas sebuah commit
+
+keyword HEAD menandakan branch yang aktif
+
+untuk membuat dan menghapus branch, maka :
+git branch, untuk mengecek kita ada branch apa saja
+git branch <namaBranch> (buat baru branch)
+git branch -d <namaBranch> (hapus)
+
+untuk berpindah branch, maka :
+git checkout <namaBranch>
+
+merge adalah gabung commit atau branch
+
+ada dua jenis merge :
+- Fast Forward Merge = branch yg ingin kita gabungkan berada dalam jalur langsung (direct path)
+- Three-way Merge = branch yg ingin kita gabungkan TIDAK BERADA dalam jalur langsung (direct path) atau bisa juga disebut merge commit, sambil nge merge sambil bikin commit baru, dgn cara :
+git merge <namaBranch> -m "<pesanCommit>", atau git merge <namaBranch> klo pesan commit nya banyak dan nanti akan diarahkan ke code editor nya
+
+
+untuk mengetahui branch mana yg sudah di merge :
+git branch --merged

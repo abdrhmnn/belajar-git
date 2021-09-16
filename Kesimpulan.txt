@@ -1,0 +1,204 @@
+untuk keluar dari program git yg akhirannya END itu, :q
+
+Git merupakan software yang bisa melakukan VCS (Version Control System)
+GitHub merupakan website / layanan untuk mengelola projek git
+
+repo = folder projek kita
+commit = rekaman / snapshot dari repo kita pada keadaan tertentu 
+checkout = berpindah ke sebuah commit atau branch baru
+branch = cabang bebas dari sebuah commit
+merge = menggabungkan 2 atau lebih branch
+merge conflict = baris yang sama diubah oleh 2 branch yang berbeda
+remote = sumber yang memiliki repo
+clone = mengambil repo dari remote
+push = mengirimkan commit local ke repo remote
+pull = mengambil commit dari repo remote ke local komputer kita
+
+
+Fork / Forking = kita mengduplikat repo milik orang lain (beserta history commitnya) 
+dan bisa dimodifikasi tanpa mengganggu repo aslinya serta kita juga bisa melakukan pull request terhadap repo yang sudah
+kita forking
+
+
+SELURUH PERUBAHAN YANG KITA LAKUKAN DI GIT LOCAL AKAN DISIMPAN KEDALAM FOLDER .GIT YANG TERSEMBUNYI DI REPO KITA
+
+sebelum menggunakan git, kita harus menginisialisasikan folder projek kita menjadi repo dgn perintah git init didalam folder nya
+
+
+Git Command local :
+- git init = untuk menginisialisasi repo git di komputer kita
+- git add <namaFile(s)> = untuk menambahkan file kedalam staging area
+- git status = untuk mengetahui status repo kita
+- git commit = untuk melakukan commit
+- git config = untuk memasukan konfigurasi kedalam git kita
+- git branch <namaBranch> dan git branch = untuk bikin branch dan melihat terdapat nama branch apa saja
+- git merge <namaBranch> = untuk menggabungkan dua atau lebih branch
+- git branch -d <namaBranch> = untuk menghapus branch
+- git branch --merged = untuk mengetahui branch mana yang sudah di merge
+- git help = untuk melihat seluruh perintah git local
+- pwd = untuk melihat lokasi folder saat ini
+- ls = untuk melihat isi dari folder
+
+
+untuk memasukkan seluruh file kedalam staging area gunakan
+git add .
+
+mengirim pesan commit jika pesannya singkat
+git commit -m "Pesan...."
+
+kalo pesannya banyak dan akan masuk kedalam code editor default nya
+git commit
+
+untuk melihat history commit kita secara keseluruhan
+git log
+
+untuk melihat history 2 hari terakhir dan history commit pada file yang spesifik
+git log -2 atau git log -- style.css
+
+untuk melakukan checkout atau kembali ke commit sebelumnya
+git checkout (5 digit awal dari commit hash nya)
+
+jika ingin mengembalikan perubahan yang spesifik maka
+git checkout (5 digit awal dari commit hash nya) -- <namaFile>
+
+jika terdapat file yang MODIFIED maka bisa add sekaligus commit langsung gunakan git commit -am
+git commit -am "<pesan..>"
+
+cara Membuat graph untuk melihat visualisasi dari commit dan juga branch yg sudah dibuat:
+alias graph="git log --all --decorate --oneline --graph"
+
+untuk melakukan checkout (pindah) pada branch lain
+git checkout <namaBranch>
+
+
+Jenis Merge :
+- Fast Forward Merge = branch yg ingin kita gabungkan berada dalam jalur langsung (direct path)
+- Three-way Merge = branch yg ingin kita gabungkan TIDAK BERADA dalam jalur langsung (direct path) atau bisa juga 
+disebut merge commit, sambil nge merge sambil bikin commit baru, dgn cara :
+git merge <namaBranch> -m "<pesanCommit>", atau git merge <namaBranch> klo pesan commit nya banyak
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+GIT MERGE CONFLICT
+Jika terjadi merge conflict maka kita hrs lakukan resolve secara manual dan HARUS dimasukan dulu kedalam staging area lalu commit
+jika merge conflict nya sudah di resolve, merge conflict itu terjadi ketika dua branch mengerjakan baris yang sama dalam satu repo
+
+Terdapat keadaan 'Detached Head' atau keadaan dimana HEAD lepas dari branch nya, keadaan ini akan terjadi jika kita checkout ke sebuah commit yang sudah dilakukan sebelumnya, maka checkout untuk berpindah ke commit sebelumnya dgn mengambil 7 digit kode hash commit tersebut dan jika ingin membuat branch baru pada commit tersebut maka harus melakukan checkout ke branch tersebut supaya HEAD nya nempel kembali ke branch, contohnya :
+git checkout 983re021
+graph
+git branch test
+git checkout test
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+GIT REMOTE, menghubungkan git local dan github atau membuat duplikat repo local di internet (github, gitlab, dll)
+
+Untuk melakukan Cloning Repository (Mengduplikasi repo di remote kedalam komputer local kita), bedanya kalo download itu repo nya tidak terhubung dengan local kita sedangkan kalo kita cloning itu akan terhubung, caranya :
+* git clone https://github.com/abdrhmnn/abdu-git-test.git <- Link clone repo nya
+* git remote <- untuk melihat nama remote yang tersedia, nama defaultnya adalah origin ketika kita
+mengcloning repo di github kedalam local komputer kita
+* git remote -v <- untuk melihat informasi secara detail dari remote nya
+* Lakukan commit sekali di local komputer kita, kemudian cek dgn git status dan graph
+* git push <- untuk mengirim perubahan kedalam github
+
+
+Untuk mengirim file repo dari local komputer kita kedalam remote (github) :
+* Bikin repo baru didalam github dengan NAMA yang sama dengan repository local kita dan tanda README nya gausah di
+CENTANG
+* git remote add origin https://github.com/abdrhmnn/abdu-git-test-2.git <- Membuat nama remote baru untuk melakukan
+pengiriman datanya dan NAMA REMOTE nya BOLEH BEBAS tapi default nya adalah origin
+* git push -u origin master <- -u artinya UPSTREAM supaya kedepannya kita menulis git push saja sudah otomatis dikirim
+ke remote origin yang branch nya master
+
+
+git fetch = untuk mengecek apakah repo yang berada didalam remote udah sampai mana commit nya, beda gak sama apa yg
+kita punya (mengambil seluruh history commit dari repo yg ada didalam remote)
+
+Jika terdapat perubahan yang sama antara repo didalam remote dan local komputer kita, maka :
+* git fetch
+* git status <- mengecek kondisi 
+* git pull <- untuk menarik perubahan pada repo remote kita
+* resolve problem <- melakukan perubahan merge conflict
+* git add .
+* git commit -m "<pesan>"
+* git push <- mengirim perubahan ke dalam repo remote kita
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Untuk melakukan up-to-date terhadap file repo yang kita fork dan repo aslinya, caranya :
+* git clone <https-link>  <- link clone dari repo yg sudah kita fork
+* git remote <- untuk mengecek ada remote apa saja
+* git remote add <namaRemoteBaru> <https-link-repo-aslinya>  <- kita menambahkan remote baru yang dituju 
+ke pemilik repo aslinya
+* graph <- periksa apakah commit dari pemilik repo sudah ada atau belum
+* git fetch <namaRemoteBaru>  <- untuk menarik seluruh history dari sih pemilik repo
+* pemilik repo melakukan perubahan
+* git status <- mengecek apakah perubahan sudah dibaca atau belum
+* git fetch sandhikagalih <- untuk menarik perubahan yang dilakukan oleh sih pemilik repo
+* git merge sandhikagalih/master <- untuk menggabungkan git local ke remote sandhikagalih
+* graph <- mengecek apakah local kita sudah sama dengan repo aslinya
+* git push -u origin master <- memperbarui repo remote local kita dengan repo aslinya
+
+
+GIT REMOTE, untuk mengirim perubahan yang kita lakukan didalam sebuah branch ke pemilik repo aslinya :
+* git branch <namaBranchBaru>  <- buat branch baru dan biasakan jika ingin mengirim perubahan ke pemilik repo maka harus
+buat branch baru terlebih dahulu supaya branch masternya selalu up-to-date dengan branch aslinya
+* git checkout <namaBranchBaru>
+* lakukan perubahan didalam branch baru
+* git commit -am "<pesan>"
+* git push origin <namaBranchBaru>  <- melakukan push ke github kita
+* kemudian kita lakukan pull request didalam github 
+* jika diterima maka kita akan membuat repo kita up-to-date dengan pemilik repo aslinya
+* git fetch <namaRemoteBaru>
+* graph
+* git checkout master <- pindah ke branch master terlebih dahulu jika ingin melakukan merge antara git local dengan
+pemilik repo
+* git merge sandhikagalih/master <- merge repo local dengan repo aslinya
+* git push origin master <- mengirim perubahan dari local ke github kita
+* git branch -d <namaBranch>  <- hapus branch yang sudah dibuat sebelumnya di local kita
+* git push origin --delete <namaBranch>   <- untuk menghapus branch pada github kita
+
+
+GIT IGNORE / .gitignore, sebuah file yang bisa disimpan didalam repository git kita agar kedepannya jika kita melakukan
+add dan commit ada file yang TIDAK IKUT terbawa kedalam add / staging area nya
+
+caranya :
+* buat file dengan nama .gitignore didalam repo local kita
+* jika terdapat file yang TIDAK ingin dimasukkan kedalam 
+github maka masukan nama file beserta extensi nya didalam file .gitignore
+* selain bisa memasukkan nama file beserta extensinya, kita juga bisa menyimpan folder dan sebuah pola extensi tertentu
+seperti data/ dan *.exe
+* untuk melihat file apa saja yang cocok untuk dimasukkan kedalam gitignore, bisa membuka website official dari github
+github.com/github/gitignore atau gitignore.io
+
+
+GIT REBASE, adalah cara lain didalam alur pengerjaan git yang TIDAK menggunakan merging, jadi kita membuat alur 
+dari commit nya menjadi satu jalur
+* bikin branch baru dulu kemudian lakukan beberapa commit
+* lalu gunakan git rebase master, untuk menyatukan jalur commit dengan branch master nya jadi artinya kita melakukan 
+penggabungan dua branch sekaligus tanpa melakukan MERGING 
+* kemudian lakukan sebaliknya yaitu rebase dari master ke <branchBaru> untuk menyamakan commit antara kedua branch 
+tersebut
+* git push / git push -u origin master
+
+
+
+Github
+Branching yaitu membuat snapshot tanpa mengganggu jalur utama (Master branch)
+Untuk menggabungkan branch (merging) maka tekan tombol ' Compare & Pull Request '
+
+Kenapa dinamakan pull request karena sebuah branch HARUS meminta izin dulu kepada si pemilik master nya 
+untuk menarik perubahan yang dia lakukan
+
+Harus merge satu" jika terdapat lebih dari satu pull request. Jika terdapat conflik pada branch kita maka yang harus
+melakukan resolve adalah pemilik dari master branch nya
+
+
+
+
+
+
+
+
+
+

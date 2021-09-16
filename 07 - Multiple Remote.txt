@@ -1,0 +1,17 @@
+multiple remote yaitu kita terhubung ke beberapa remote sekaligus (misalkan kita ingin melakukan fork terhadap repo orang lain dan duplikat repo dari fork tersebut ingin di copy juga ke local git) maka kita akan mengelola 2 remote sekaligus
+
+Untuk melakukan up-to-date terhadap file repo yang kita fork dan repo aslinya, caranya :
+* git clone <https-link>  <- link clone dari repo yg sudah kita fork
+* git remote <- untuk mengecek remote (remote ini akan menuju ke repo yg kita duplikat tidak ke repo aslinya maka jika terjadi perubahan di repo aslinya kita tidak tau agar kita bisa tau perubahan pada repo aslinya maka buat remote baru)
+* git remote add <namaRemoteBaru> <https-link-repo-aslinya>  <- kita menambahkan remote baru yang dituju ke pemilik repo aslinya
+* graph (mengecek apakah remote repo aslinya posisi nya sudah sama atau belum, untuk bisa menampilkannya maka kita harus fetch dulu history commit repo asli nya ke local kita) <- periksa apakah commit dari pemilik repo sudah ada atau belum
+* git fetch <remoteRepoAslinya>  <- untuk menarik seluruh history dari sih pemilik repo
+
+pemilik repo aslinya ceritanya melakukan perubahan (git add, git commit) :
+* pemilik repo melakukan perubahan
+* git status <- mengecek apakah perubahan sudah dibaca atau belum
+* git fetch sandhikagalih <- untuk menarik perubahan yang dilakukan oleh sih pemilik repo
+* graph
+* git merge sandhikagalih/master <- untuk menggabungkan git local ke remote sandhikagalih
+* graph <- mengecek apakah local kita sudah sama dengan repo aslinya
+* git push -u origin master <- memperbarui repo remote local kita dengan repo aslinya

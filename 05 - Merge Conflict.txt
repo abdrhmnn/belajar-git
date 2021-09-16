@@ -1,0 +1,8 @@
+Merge conflict itu terjadi ketika dua branch mengerjakan baris yang sama dalam satu repo, maksud nya jika di local itu mengubah file di baris 10 dan di remote juga mengubah file di baris yg sama maka akan terjadi conflict
+
+atau kondisi lain jika branch lain didalam local atau remote melakukan perubahan dan di branch lain jg melakukan perubahan di file dan baris yang sama maka nanti jika di merge akan terjadi conflict
+
+dan nanti kita akan memilih perubahan yang terjadi di local atau remote (resolve secara manual)
+
+
+Jika terjadi merge conflict maka kita hrs lakukan resolve secara manual dan HARUS dimasukan dulu kedalam staging area lalu commit jika merge conflict nya sudah di resolve

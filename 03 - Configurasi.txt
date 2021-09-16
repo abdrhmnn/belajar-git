@@ -1,0 +1,13 @@
+sebelum commit pastikan harus configurasi username dan juga email
+sebaiknya username dan email disesuaikan dengan akun github
+
+perintahnya :
+git config --global user.name = "<username>"
+git config --global user.email = "<email>"
+
+atau mau di atur secara lokal maka ganti saja --global dgn --local (hanya khusus utk repo yang sedang digunakan saja)
+
+atau kalo bingung bisa jalankan perintah :
+git config atau git config --list
+
+nanti akan diberikan seluruh informasi mengenai configurasi git

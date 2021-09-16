@@ -1,0 +1,23 @@
+Git merupakan software yang bisa melakukan VCS (Version Control System)
+GitHub merupakan website / layanan untuk mengelola projek git
+
+SELURUH PERUBAHAN YANG KITA LAKUKAN DI GIT LOCAL AKAN DISIMPAN KEDALAM FOLDER .GIT YANG TERSEMBUNYI DI REPO KITA (bisa dilihat dgn menonaktifkan fitur di setingan windows)
+
+sebelum bisa menggunakan perintah git, kita harus menginisialisasikan folder projek kita menjadi repo dgn perintah "git init" didalam folder nya
+
+repo = folder projek kita
+commit = rekaman / snapshot dari repo kita pada keadaan tertentu 
+checkout = berpindah ke sebuah commit atau branch baru
+branch = cabang bebas dari sebuah commit
+merge = menggabungkan 2 atau lebih branch
+merge conflict = baris yang sama diubah oleh 2 branch yang berbeda
+remote = sumber yang memiliki repo
+clone = mengambil repo dari remote
+push = mengirimkan commit local ke repo remote
+pull = mengambil commit dari repo remote ke local komputer kita
+working tree = seluruh perubahan file yang dilakukan didalam repo
+staging area = tempat untuk menampung files dari git add
+history area = tempat untuk menampung seluruh commit
+
+Fork / Forking = kita mengduplikat repo milik orang lain (beserta history commitnya) 
+dan bisa dimodifikasi tanpa mengganggu repo aslinya serta kita juga bisa melakukan pull request terhadap repo yang sudah kita forking

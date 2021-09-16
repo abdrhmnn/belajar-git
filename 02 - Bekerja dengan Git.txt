@@ -1,0 +1,27 @@
+setelah kita membuat folder dan dijadikan repository git
+maka folder tersebut siap untuk digunakan dengan bantuan git
+
+Misal ada perubahan didalam folder tersebut, maka :
+git status, melihat status pekerjaan didalam working tree dan staging area
+git add <namaFile> atau bisa juga mengirim semua file yang ada didalam working tree dgn cara
+"git add ."
+git commit -m <pesanCommit>
+
+jika ingin kembali ke commit sebelumnya atau ke commit tertentu, maka :
+git checkout <7 kode digit pertama dari git commit>
+
+Terdapat keadaan 'Detached Head' atau keadaan dimana HEAD lepas dari branch nya, keadaan ini akan terjadi jika kita checkout ke sebuah commit yang sudah dilakukan sebelumnya, maka checkout untuk berpindah ke commit sebelumnya dgn mengambil 7 digit kode hash commit tersebut dan jika ingin membuat branch baru pada commit tersebut maka harus melakukan checkout ke branch tersebut supaya HEAD nya nempel kembali ke branch, contohnya :
+git checkout 983re021
+graph
+git branch test
+git checkout test
+
+
+jika ingin melihat history commit, maka :
+git log
+
+atau jika ingin melihat perubahan history commit 2 hari terakhir, maka :
+git log -2
+
+atau jika ingin melihat perubahan history commit pada file tertentu, maka :
+git log -- <namaFile>, maka seluruh perubahan yg terkait dgn file tersebut akan muncul

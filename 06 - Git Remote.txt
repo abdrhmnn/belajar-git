@@ -1,0 +1,26 @@
+origin/master atau origin/HEAD = branch di remote yg namanya master
+
+Untuk melakukan Cloning Repository (Mengduplikasi repo di remote kedalam komputer local kita), bedanya kalo download itu repo nya tidak terhubung dengan local kita sedangkan kalo kita cloning itu akan terhubung, caranya :
+* git clone https://github.com/abdrhmnn/abdu-git-test.git <- Link clone repo nya
+* git remote <- untuk melihat nama remote yang tersedia, nama defaultnya adalah origin (secara otomatis dibuatkan oleh git) ketika kita mengcloning repo di github kedalam local komputer kita
+* git remote -v <- untuk melihat informasi secara detail dari remote nya
+* Lakukan commit sekali di local komputer kita (git add, git commit), kemudian cek dgn git status dan graph
+* git push <- untuk mengirim perubahan kedalam github (remote git)
+
+
+Untuk mengirim file repo dari local komputer kita kedalam remote (github) :
+* Bikin repo baru didalam github dengan NAMA yang sama dengan repository local kita dan tanda README nya gausah di CENTANG
+* git remote add origin https://github.com/abdrhmnn/abdu-git-test-2.git <- Membuat nama remote baru untuk melakukan pengiriman datanya dan NAMA REMOTE nya BOLEH BEBAS tapi default nya adalah origin
+* git push -u origin master <- -u artinya UPSTREAM supaya kedepannya kita menulis git push saja sudah otomatis dikirim ke remote origin yang branch nya master
+
+untuk proses nomor 2 dan 3 bisa disesuaikan dengan perintah yg git berikan karena ketika kita buat repo tanpi centang file READ ME maka nanti ada informasi konfigurasi yang harus dilakukan
+
+
+Jika terdapat perubahan yang sama antara repo didalam remote dan local komputer kita, maka :
+* git fetch, untuk mengecek apakah repo yang berada didalam remote udah sampai mana commit nya, beda gak sama apa yg kita punya (mengambil seluruh history commit dari repo yg ada didalam remote)
+* git status <- mengecek kondisi 
+* git pull <- untuk menarik perubahan pada repo remote
+* resolve problem (karena membuat dua cabang yg berbeda yaitu perubahan dari local dan remote) <- melakukan perubahan merge conflict
+* git add .
+* git commit -m "<pesan>"
+* git push <- mengirim perubahan ke dalam repo remote kita
